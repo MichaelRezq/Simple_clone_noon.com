@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- fav icon -->
+    <link
+      rel="shortcut icon"
+      href="./images/1cb86469753415.Y3JvcCwxMTUwLDg5OSwxMzc1LDY0Mw.jpg"
+      type="image/x-icon"
+    />
+    <!-- page title -->
+    <title>cart page</title>
+    <!-- calling the box icons liberary -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- calling the main css file -->
+    <link rel="stylesheet" href="./products.css" />
+    <!-- calling the main css file -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="welcome">
+      <div class="loading">Loading&#8230;</div>
+      <h2>up to 50% sale</h2>
+    </div>
+    <div class="pageContent" style="display: none">
+      <!-- header -->
+      <div class="header">
+        <nav class="navbar">
+          <div style="display: inline-block">
+            <a href="./index.html"
+              ><img src="noon-logo-en.svg" width="85px" alt="noon" />
+            </a>
+            <div class="search-container">
+              <form action="">
+                <div style="display: flex">
+                  <input
+                    class="inputsearch"
+                    type="text"
+                    id="searchbar"
+                    placeholder="What are you looking for?"
+                    name="search"
+                  />
+                  <button id="srchbtn" style="height: 42px; margin-top: 8px">
+                    search
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="nav-r">
+            <a
+              href="./signup.html"
+              onclick="document.getElementById('id02').style.display='block'"
+              style="width: auto"
+              >Sign up <i class="fa fa-user"></i>
+            </a>
+            <a
+              href="./login.html"
+              onclick="document.getElementById('id01').style.display='block'"
+              style="width: auto"
+              >Login <i class="fa fa-sign-in"></i
+            ></a>
+            <a href="cart.html"
+              >Cart <i class="fa fa-shopping-cart" id="cartitem"></i
+            ></a>
+          </div>
+        </nav>
+      </div>
+      <!-- slider  -->
+      <div class="slideshow-container">
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-01.avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (1).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (2).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01.avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (3).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (4).avif" style="width: 100%" />
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+      </div>
+      <div class="container" style="width: 40%; margin: auto">
+        <div class="ViewPageProduct">
+          <div
+            class="ViewPageProductContent"
+            style="flex-direction: column"
+          ></div>
+        </div>
+        <!-- footer -->
+        <footer>
+          <p>© 2022 noon. All Rights Reserved</p>
+          <div class="social-icon">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-google"></a>
+            <a href="#" class="fa fa-linkedin"></a>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script>
+      if (
+        JSON.parse(localStorage.getItem("addedViewPageProductsInCart"))
+          .length >= 1
+      ) {
+        // [1] getting the ViewPageProduct from localstorage
+        let cartPageProduct = JSON.parse(
+          localStorage.getItem("addedViewPageProductsInCart")
+        );
+        console.log(cartPageProduct);
+
+        // adding content to the page
+        let ViewPageProductContent = document.querySelector(
+          ".ViewPageProductContent"
+        );
+        function addContentToPage() {
+          cartPageProduct.forEach((product) => {
+            ViewPageProductContent.innerHTML += `
+        <div
+        class="ViewPageProductDetails">
+
+          <h2 class="ViewPageProductHeader">
+          ${product.title}
+          </h2>
+          <div
+          class="clickedImage" 
+          style='display:flex;
+          justify-content:space-between;
+          flex-direction:column'>
+            <img style="margin: auto;width: 150px;height: 150px;border-radius: 50%;"
+            src="${product.images[0]}"
+            alt="product Image" />
+          </div>
+         
+          <p
+          class="ViewPageProductDescription">
+          ${product.description}
+          
+          </p>
+          <p
+          class="ViewPageProductBrand">
+          Brand : ${product.brand}
+          </p>
+
+          <p
+          class="ViewPageProductPriceBeforeDiscount">
+          Price Before discount :
+          ${
+            product.price * product.amount +
+            product.discountPercentage * product.price ** product.amount
+          }LE
+          </p>
+
+          <p class="ViewPageProductDiscount">
+          discount: ${product.discountPercentage}%
+          </p>
+
+          <p
+          class="ViewPageProductPrice">
+          Price After Discount :${product.price * product.amount}LE
+          </p>
+          <p
+          class="ViewPageProductPrice">
+          Amount :${product.amount}
+          </p>
+          <p
+          class="ViewPageProductPriceSave">
+          You Saved :
+          ${product.price * product.amount * product.discountPercentage}LE
+          </p>
+
+
+            <button
+            class=" deleteFromCart"
+            onclick="deleteFromcart(${product.id})"
+            style="width:80%; background-color:red;color:white">
+              Delete from Cart
+            </button>
+            <button
+            class="continueShopping"
+            onchange="valueChange()">
+            <a href="./signup.html" style="text-decoration:none;color:white">continue shoping</a>
+            </button>
+          </div>
+        </div>
+        </div>
+            `;
+          });
+        }
+        addContentToPage();
+        //  handling delete from cart
+        function deleteFromcart(id) {
+          cartPageProduct.forEach((product) => {
+            // delete the clicked peoduct from the array
+            if (product.id === id) {
+              // console.log(product);
+              // get the index of the product to be deleted
+              let index = cartPageProduct.indexOf(product);
+              cartPageProduct.splice(index, 1);
+              //  re show the content in the page
+              ViewPageProductContent.innerHTML = "";
+              addContentToPage();
+              // re adjust the array in the local storage
+              localStorage.setItem(
+                "addedViewPageProductsInCart",
+                JSON.stringify(cartPageProduct)
+              );
+            }
+          });
+
+          //
+          if (cartPageProduct.length === 0) {
+            emptyCardContent();
+          }
+        }
+      } else {
+        emptyCardContent();
+      }
+
+      // handle the empty Card Content
+      function emptyCardContent() {
+        let ViewPageProduct = document.querySelector(".ViewPageProduct");
+        ViewPageProduct.innerHTML = `
+        <div class="emptyCart">
+            <img src="./images/empty-state-cart.svg" />
+            <h3> your cart is empty </h3>
+            <a href="./index.html">start shopping</a>
+        </div>
+        `;
+      }
+      // loading handling
+      let welcome = document.querySelector(".welcome");
+      let pageContent = document.querySelector(".pageContent");
+      setTimeout(function name(params) {
+        welcome.style.display = "none";
+        pageContent.style.display = "block";
+      }, 1000);
+    </script>
+    <script src="./main.js"></script>
+  </body>
+</html>

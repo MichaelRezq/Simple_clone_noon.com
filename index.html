@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- fav icon -->
+    <link
+      rel="shortcut icon"
+      href="../images/1cb86469753415.Y3JvcCwxMTUwLDg5OSwxMzc1LDY0Mw.jpg"
+      type="image/x-icon"
+    />
+    <!-- page title -->
+    <title>Electronics</title>
+    <!-- calling the box icons liberary -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- fontAwsome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- calling the main css file -->
+    <link rel="stylesheet" href="./products.css" />
+    <!-- header styling -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="welcome">
+      <div class="loading">Loading&#8230;</div>
+      <h2>Welcome To Our Market</h2>
+    </div>
+    <div class="container" style="display: none">
+      <!-- header -->
+      <div class="header">
+        <nav class="navbar">
+          <div style="display: inline-block">
+            <a href="./index.html"
+              ><img src="noon-logo-en.svg" width="85px" alt="noon" />
+            </a>
+            <div class="search-container">
+              <form action="">
+                <div style="display: flex">
+                  <input
+                    class="inputsearch"
+                    type="text"
+                    id="searchbar"
+                    placeholder="What are you looking for?"
+                    name="search"
+                  />
+                  <button id="srchbtn" style="height: 42px; margin-top: 8px">
+                    search
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="nav-r">
+            <a
+              href="./signup.html"
+              onclick="document.getElementById('id02').style.display='block'"
+              style="width: auto"
+              >Sign up <i class="fa fa-user"></i>
+            </a>
+            <a
+              href="./login.html"
+              onclick="document.getElementById('id01').style.display='block'"
+              style="width: auto"
+              >Login <i class="fa fa-sign-in"></i
+            ></a>
+            <a href="cart.html"
+              >Cart <i class="fa fa-shopping-cart" id="cartitem"></i
+            ></a>
+          </div>
+        </nav>
+      </div>
+      <!-- slider  -->
+      <div class="slideshow-container">
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-01.avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (1).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (2).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01.avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (3).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (4).avif" style="width: 100%" />
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+      </div>
+      <div class="pageContent">
+        <div class="filtration">
+          <div class="filtrationOptions">
+            <div class="filtrationByBrand">
+              <button
+                id="Samsung"
+                class="filterButtonByBrandButton"
+                onclick="handleFilterByBrand(event)"
+              >
+                Samsung
+              </button>
+              <button
+                id="Apple"
+                class="filterButtonByBrandButton"
+                onclick="handleFilterByBrand(event)"
+              >
+                Apple
+              </button>
+              <button
+                id="Infinix"
+                class="filterButtonByBrandButton"
+                onclick="handleFilterByBrand(event)"
+              >
+                Infinix
+              </button>
+              <button
+                id="Huawei"
+                class="filterButtonByBrandButton"
+                onclick="handleFilterByBrand(event)"
+              >
+                Huawei
+              </button>
+            </div>
+            <div class="filterOption">
+              <h4 class="filterOptionHeader" onclick="showListOfPrice()">
+                Price(EGP) <i class="bx bx-chevron-right"></i>
+              </h4>
+              <div class="filterOptionList none">
+                <input
+                  type="number"
+                  value="100"
+                  id="filterOptionListInputFrom"
+                  onchange="handleValueChange()"
+                />
+                <label for="filterOptionListInputFrom"> TO</label>
+                <input
+                  type="number"
+                  value="500"
+                  id="filterOptionListInputTo"
+                  onchange="handleValueChange()"
+                />
+                <label for="filterOptionListInputTo">
+                  <button onclick="SearchByPrice()">Go</button></label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="productsBox"></div>
+        <div class="productsBox"></div>
+      </div>
+      <!-- footer -->
+      <footer>
+        <p>© 2022 noon. All Rights Reserved</p>
+        <div class="social-icon">
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-google"></a>
+          <a href="#" class="fa fa-linkedin"></a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // calling Html Elements
+      let productsBox = document.querySelector(".productsBox");
+      // [1]----------> fetch the content from an api <--------------
+      fetch("https://dummyjson.com/products")
+        .then((response) => response.json())
+        .then((json) => {
+          // console.log(json.products);
+          // safe the data came from the api in local storage
+          localStorage.removeItem("products");
+          localStorage.setItem("products", JSON.stringify(json.products));
+        });
+      // getting products from  local storage to show in the page
+      let products = JSON.parse(localStorage.getItem("products"));
+
+      //[2]-------------> handling filtering by price <----------------
+
+      // the input price by the user
+      let priceInputValueFrom;
+      let priceInputValueTo;
+      function handleValueChange() {
+        priceInputValueTo = document.querySelector(
+          "#filterOptionListInputTo"
+        ).value;
+        priceInputValueFrom = document.querySelector(
+          "#filterOptionListInputFrom"
+        ).value;
+      }
+      function SearchByPrice() {
+        handleValueChange();
+        products = JSON.parse(localStorage.getItem("products"));
+        // filter the array of products
+        products = products.filter(function (product) {
+          // console.log( Number(product.price));
+          return (
+            Number(product.price) > priceInputValueFrom &&
+            Number(product.price) < priceInputValueTo
+          );
+        });
+        // empty the content box
+        productsBox.innerHTML = "";
+        // adjust the content Box
+        addingContentTopage();
+      }
+
+      // [3] -------------> handling filtering by price <----------------
+
+      let filtrationByBrandButtons = document.querySelectorAll(
+        ".filtrationByBrand button"
+      );
+
+      function handleFilterByBrand(e) {
+        products = JSON.parse(localStorage.getItem("products"));
+        console.log(e.target.id);
+
+        // filter the array of products
+        products = products.filter((product) => {
+          return product.brand === e.target.id;
+        });
+
+        // empty the content box
+        productsBox.innerHTML = "";
+
+        // adjust the content Box
+        addingContentTopage();
+      }
+      // ---------------------- search
+      searchBar = document.getElementById("searchbar");
+      searBtn = document.getElementById("srchbtn");
+      let searchBarValue;
+      // searchBar.addEventListener("focus", function () {
+      //     searchBarValue = document.getElementById("searchbar")
+      // });
+
+      searBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        searchBarValue = document.getElementById("searchbar");
+        console.log(searchBarValue.value);
+        fetch(
+          "https://dummyjson.com/products/search?q=" + searchBarValue.value,
+          {}
+        )
+          .then((res) => res.json())
+          .then(ressearch);
+      });
+
+      function ressearch(data) {
+        let cdata = data.products;
+        productsBox.innerHTML = "";
+        cdata.forEach((product) => {
+          // add each product to the product box
+          productsBox.innerHTML += `<div 
+          class='product'
+          onclick='handleView(${JSON.stringify(product)})'>
+
+          <h3 class="CardTitle" >${product.title}</h3>
+
+          <img class="CardImage"
+          src='${product.images[0]}'
+          alt="ProductImage">
+
+          <p class="CardDescription">
+            ${product.description}
+          </p>
+         
+         <div class="cardFooter">
+
+          <p class="CardPrice"> 
+            <span>Price :</span> 
+            ${product.price}LE
+          </p>
+          
+          <p class="Cardrating">
+            <span>Rating :</span> 
+            <i class='bx bxs-star'></i>${product.rating}%
+            </p>
+          </div>
+          
+          </div>`;
+        });
+      }
+      // [3] -------------> show the content to the page  <----------------
+
+      function addingContentTopage() {
+        // looping in each product
+        products.forEach((product) => {
+          // add each product to the product box
+          productsBox.innerHTML += `<div 
+          class='product'
+          onclick='handleView(${JSON.stringify(product)})'>
+
+          <h3 class="CardTitle" >${product.title}</h3>
+
+          <img class="CardImage"
+          src='${product.images[0]}'
+          alt="ProductImage">
+
+          <p class="CardDescription">
+            ${product.description}
+          </p>
+         
+         <div class="cardFooter">
+
+          <p class="CardPrice"> 
+            <span>Price :</span> 
+            ${product.price}LE
+          </p>
+          
+          <p class="Cardrating">
+            <span>Rating :</span> 
+            <i class='bx bxs-star'></i>${product.rating}%
+            </p>
+          </div>
+          
+          </div>`;
+        });
+      }
+      addingContentTopage();
+      // handling viewing any product
+      function handleView(product) {
+        console.log(product);
+        // saving the clicked one to local storage
+        localStorage.setItem("product", JSON.stringify(product));
+        // open the product page
+        window.open("./view.html");
+      }
+
+      // handle the list of prices to filter
+      let ListOfPrice = document.querySelector(".filterOptionList");
+      let filterOptionHeaderIcon = document.querySelector(
+        ".filterOptionHeader i"
+      );
+      function showListOfPrice() {
+        ListOfPrice.classList.toggle("none");
+      }
+
+      // loading handling
+      let welcome = document.querySelector(".welcome");
+      let container = document.querySelector(".container");
+      setTimeout(function name(params) {
+        welcome.style.display = "none";
+        container.style.display = "block";
+      }, 1000);
+    </script>
+    <script src="./main.js"></script>
+  </body>
+</html>

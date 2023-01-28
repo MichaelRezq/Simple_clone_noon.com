@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- fav icon -->
+    <link
+      rel="shortcut icon"
+      href="./images/1cb86469753415.Y3JvcCwxMTUwLDg5OSwxMzc1LDY0Mw.jpg"
+      type="image/x-icon"
+    />
+    <!-- page title -->
+    <title>Product page</title>
+    <!-- calling the box icons liberary -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- calling the main css file -->
+    <link rel="stylesheet" href="./products.css" />
+    <!-- calling the main css file -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="welcome">
+      <div class="loading">Loading&#8230;</div>
+      <h2>Buy Now</h2>
+    </div>
+    <div class="pageContent" style="display: none">
+      <!-- header -->
+      <div class="header">
+        <nav class="navbar">
+          <div style="display: inline-block">
+            <a href="./index.html"
+              ><img src="noon-logo-en.svg" width="85px" alt="noon" />
+            </a>
+            <div class="search-container">
+              <form action="">
+                <div style="display: flex">
+                  <input
+                    class="inputsearch"
+                    type="text"
+                    id="searchbar"
+                    placeholder="What are you looking for?"
+                    name="search"
+                  />
+                  <button id="srchbtn" style="height: 42px; margin-top: 8px">
+                    search
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="nav-r">
+            <a
+              href="./signup.html"
+              onclick="document.getElementById('id02').style.display='block'"
+              style="width: auto"
+              >Sign up <i class="fa fa-user"></i>
+            </a>
+            <a
+              href="./login.html"
+              onclick="document.getElementById('id01').style.display='block'"
+              style="width: auto"
+              >Login <i class="fa fa-sign-in"></i
+            ></a>
+            <a href="cart.html"
+              >Cart <i class="fa fa-shopping-cart" id="cartitem"></i
+            ></a>
+          </div>
+        </nav>
+      </div>
+      <!-- slider  -->
+      <div class="slideshow-container">
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-01.avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (1).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (2).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01.avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (3).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (4).avif" style="width: 100%" />
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+      </div>
+      <div class="container">
+        <div class="ViewPageProduct">
+          <div class="ViewPageProductContent"></div>
+          <!-- Add to the Cart (BY saving in the localStorage) -->
+        </div>
+        <!-- footer -->
+        <footer>
+          <p>© 2022 noon. All Rights Reserved</p>
+          <div class="social-icon">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-google"></a>
+            <a href="#" class="fa fa-linkedin"></a>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      // [1] getting the ViewPageProduct from localstorage
+      let ViewPageProduct = JSON.parse(localStorage.getItem("product"));
+      // console.log(ViewPageProduct);
+
+      // [2] looping in all images to show in the page
+      let arrayOfImages = ViewPageProduct.images.map((image) => {
+        console.log(image);
+        return `<img src="${image}"
+         alt="ViewPageProduct Description Image"
+         class="productImageInColumn" />`;
+      });
+
+      // adding content to the page
+      let ViewPageProductContent = document.querySelector(
+        ".ViewPageProductContent"
+      );
+      let discount = 0.5;
+      ViewPageProductContent.innerHTML = `
+      <div
+      class="ViewPageProductDetails">
+
+        <h2 class="ViewPageProductHeader">
+        ${ViewPageProduct.title}
+        </h2>
+
+        <p
+        class="ViewPageProductDescription">
+        ${ViewPageProduct.description}
+        </p>
+
+        <p
+        class="ViewPageProductBrand">
+        Brand : ${ViewPageProduct.brand ? ViewPageProduct.brand : "ORIGINAL"}
+        </p>
+
+        <p
+        class="ViewPageProductPriceBeforeDiscount">
+        Price Before discount :
+        ${
+          ViewPageProduct.price +
+          ViewPageProduct.discountPercentage * ViewPageProduct.price
+            ? ViewPageProduct.price +
+              ViewPageProduct.discountPercentage * ViewPageProduct.price
+            : ViewPageProduct.price + discount * ViewPageProduct.price
+        }LE
+        </p>
+
+        <p class="ViewPageProductDiscount">
+        discount: ${
+          ViewPageProduct.discountPercentage
+            ? ViewPageProduct.discountPercentage
+            : discount * 100
+        }%
+        </p>
+
+        <p
+        class="ViewPageProductPrice">
+        Price After Discount :${ViewPageProduct.price}LE
+        </p>
+
+        <p
+        class="ViewPageProductPriceSave">
+        You Saved :
+        ${
+          ViewPageProduct.price * ViewPageProduct.discountPercentage
+            ? ViewPageProduct.price * ViewPageProduct.discountPercentage
+            : ViewPageProduct.price * discount
+        }LE
+        </p>
+        
+        <div 
+        class="cart">
+
+          <select name="amount" id="amount">
+            <optgroup label="Choose amount">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </optgroup>
+          </select>
+
+          <button 
+          class="addToCartButton"
+          onchange="valueChange()">
+           <a href="./cart.html" style="text-decoration:none;color:white" > Add To Cart</a>
+          </button>
+
+        </div>
+      </div>
+
+      <div
+      class="viewPageImages">
+        <div
+        class="clickedImage">
+
+          <img
+          src="${ViewPageProduct.images[0]}"
+          alt="product Image" />
+
+      </div>
+
+        <div
+        class="allImagesIncolum">
+        </div>
+
+      </div>
+
+          `;
+
+      // the left collum of product images
+      let allImagesIncolumDiv = document.querySelector(".allImagesIncolum");
+      arrayOfImages.forEach((image) => {
+        allImagesIncolumDiv.innerHTML += image;
+      });
+
+      // when the user click  on an image of the column will be shown in the clicked image area
+      // access the column of imgs and the clicked image area
+
+      let arrayOfImagesInColumnDiv = document.querySelectorAll(
+        ".allImagesIncolum img"
+      );
+      let clickedImageDiv = document.querySelector(".clickedImage");
+      arrayOfImagesInColumnDiv.forEach((img) => {
+        img.addEventListener("click", (event) => {
+          // console.log(event.target.src);
+          clickedImageDiv.innerHTML = "";
+          clickedImageDiv.innerHTML = `<img src='${event.target.src}' alt='Clicked Image'/>`;
+        });
+      });
+      //  handling add to cart
+      let addToCartButton = document.querySelector(".addToCartButton");
+      let amountValue;
+      // getting the saved ViewPageProducts in the cart
+      let addedViewPageProductsInCart = [];
+      if (localStorage.getItem("addedViewPageProductsInCart")) {
+        addedViewPageProductsInCart = JSON.parse(
+          localStorage.getItem("addedViewPageProductsInCart")
+        );
+      }
+
+      addToCartButton.addEventListener("click", function () {
+        // empty the value of the
+        ViewPageProduct.amount = "";
+
+        valueChange();
+        // add the amount as key and the chosen value by user as value
+        ViewPageProduct.amount = amountValue;
+        // push the object of ViewPageProduct to the array of cart
+        addedViewPageProductsInCart.push(ViewPageProduct);
+        //  re-save the array of ViewPageProducts in the cart after adding the amount
+        localStorage.setItem(
+          "addedViewPageProductsInCart",
+          JSON.stringify(addedViewPageProductsInCart)
+        );
+      });
+      // handling the change of value of amount
+      function valueChange() {
+        return (amountValue = document.querySelector("#amount").value);
+      }
+      // loading handling
+      let welcome = document.querySelector(".welcome");
+      let pageContent = document.querySelector(".pageContent");
+      setTimeout(function name(params) {
+        welcome.style.display = "none";
+        pageContent.style.display = "block";
+      }, 1000);
+    </script>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

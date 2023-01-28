@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form Validation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="new.css" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./products.css" />
+    <!-- fav icon -->
+    <link
+      rel="shortcut icon"
+      href="../images/1cb86469753415.Y3JvcCwxMTUwLDg5OSwxMzc1LDY0Mw.jpg"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div class="welcome">
+      <div class="loading">Loading&#8230;</div>
+      <h2>LogIn</h2>
+    </div>
+    <div class="pageContent" style="display: none">
+      <!-- header -->
+      <div class="header">
+        <nav class="navbar">
+          <div style="display: inline-block">
+            <a href="./index.html"
+              ><img src="noon-logo-en.svg" width="85px" alt="noon" />
+            </a>
+            <div class="search-container">
+              <form action="">
+                <div style="display: flex">
+                  <input
+                    class="inputsearch"
+                    type="text"
+                    id="searchbar"
+                    placeholder="What are you looking for?"
+                    name="search"
+                  />
+                  <button id="srchbtn" style="height: 42px; margin-top: 8px">
+                    search
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="nav-r">
+            <a
+              href="./signup.html"
+              onclick="document.getElementById('id02').style.display='block'"
+              style="width: auto"
+              >Sign up <i class="fa fa-user"></i>
+            </a>
+            <a
+              href="./login.html"
+              onclick="document.getElementById('id01').style.display='block'"
+              style="width: auto"
+              >Login <i class="fa fa-sign-in"></i
+            ></a>
+            <a href="cart.html"
+              >Cart <i class="fa fa-shopping-cart" id="cartitem"></i
+            ></a>
+          </div>
+        </nav>
+      </div>
+      <!-- slider  -->
+      <div class="slideshow-container">
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-01.avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (1).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (2).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01.avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (3).avif" style="width: 100%" />
+        </div>
+        <div class="mySlides">
+          <img src="en_dk_eg-hero-banner-01 (4).avif" style="width: 100%" />
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+      </div>
+      <style>
+        * {
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+          font-family: "Poppins", sans-serif;
+        }
+        body {
+          background-color: #1a1f19;
+        }
+        .container {
+          width: 90vw;
+          max-width: 600px;
+          padding: 2em 1.5em;
+          background-color: #ffffff;
+          margin: 1em auto;
+          border-radius: 0.5em;
+        }
+        h4 {
+          font-size: 1.5em;
+        }
+        .input-section {
+          margin: 0.5em 0;
+        }
+        label,
+        .error-message {
+          display: block;
+          font-size: 1em;
+        }
+        label {
+          margin-bottom: 0.5em;
+          font-weight: 500;
+        }
+        .error-message {
+          margin-top: 0.2em;
+        }
+        input,
+        button {
+          display: block;
+          outline: none;
+          width: 100%;
+          padding: 0.5em;
+          border-radius: 0.3em;
+        }
+        input {
+          padding: 1em 0.5em;
+          border: 1.5px solid #d0d0d0;
+        }
+        button {
+          font-size: 1em;
+          background-color: #3164ff;
+          border: none;
+          color: #ffffff;
+          padding: 0.8em 0;
+          margin-top: 2em;
+        }
+        .required-color {
+          color: #ff4747;
+        }
+        .error {
+          border-color: #ff4747;
+        }
+        .valid {
+          border-color: #37a137;
+        }
+        .hide {
+          display: none;
+        }
+        @media only screen and (max-width: 450px) {
+          .container {
+            font-size: 14px;
+          }
+        }
+      </style>
+      <div class="container">
+        <form autocomplete="off">
+          <h4>Login</h4>
+
+          <div class="input-section">
+            <label>Email <span class="required-color">*</span></label>
+            <input type="email" placeholder="Enter Email" id="email" required />
+            <span id="email-error" class="hide required-color error-message"
+              >Invalid Email</span
+            >
+            <span id="empty-email" class="hide required-color error-message"
+              >Email Cannot Be Empty</span
+            >
+          </div>
+
+          <div class="input-section">
+            <label>Password <span class="required-color">*</span></label>
+            <input
+              type="password"
+              placeholder="Enter Password"
+              id="password"
+              required
+            />
+            <span id="password-error" class="hide required-color error-message">
+              Passwords Should Have Letter, Special symbols, Numbers And Length
+              >= 8
+            </span>
+            <span id="empty-password" class="hide required-color error-message">
+              Password Cannot Be Empty
+            </span>
+          </div>
+
+          <button id="submit-button">LogIn</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      //Email
+      let emailInput = document.getElementById("email");
+      let emailError = document.getElementById("email-error");
+      let emptyEmailError = document.getElementById("empty-email");
+      //Password
+      let passwordInput = document.getElementById("password");
+      let passwordError = document.getElementById("password-error");
+      let emptyPasswordError = document.getElementById("empty-password");
+      //Submit
+      let submitButton = document.getElementById("submit-button");
+      //Valid
+      let validClasses = document.getElementsByClassName("valid");
+      let invalidClasses = document.getElementsByClassName("error");
+      //Password Verification
+      const passwordVerify = (password) => {
+        const regex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        return regex.test(password) && password.length >= 8;
+      };
+      //Text verification (if input contains only text)
+      const textVerify = (text) => {
+        const regex = /^[a-zA-Z]{3,}$/;
+        return regex.test(text);
+      };
+      //Phone number verification
+      const phoneVerify = (number) => {
+        const regex = /^[0-9]{10}$/;
+        return regex.test(number);
+      };
+      //Email verification
+      const emailVerify = (input) => {
+        const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //update at 5/1/2023
+        return regex.test(input);
+      };
+      //For empty input - accepts(input,empty error for that input and other errors)
+      const emptyUpdate = (
+        inputReference,
+        emptyErrorReference,
+        otherErrorReference
+      ) => {
+        if (!inputReference.value) {
+          //input is null/empty
+          emptyErrorReference.classList.remove("hide");
+          otherErrorReference.classList.add("hide");
+          inputReference.classList.add("error");
+        } else {
+          //input has some content
+          emptyErrorReference.classList.add("hide");
+        }
+      };
+      //For error styling and displaying error message
+      const errorUpdate = (inputReference, errorReference) => {
+        errorReference.classList.remove("hide");
+        inputReference.classList.remove("valid");
+        inputReference.classList.add("error");
+      };
+      //For no errors
+      const validInput = (inputReference) => {
+        inputReference.classList.remove("error");
+        inputReference.classList.add("valid");
+      };
+      //Email
+      emailInput.addEventListener("input", () => {
+        if (emailVerify(emailInput.value)) {
+          emailError.classList.add("hide");
+          validInput(emailInput);
+        } else {
+          errorUpdate(emailInput, emailError);
+          emptyUpdate(emailInput, emptyEmailError, emailError);
+        }
+      });
+      //Password
+      passwordInput.addEventListener("input", () => {
+        //best case ****oMasas@1***
+        if (passwordVerify(passwordInput.value)) {
+          passwordError.classList.add("hide");
+          validInput(passwordInput);
+        } else {
+          errorUpdate(passwordInput, passwordError);
+          emptyUpdate(passwordInput, emptyPasswordError, passwordError);
+        }
+      });
+
+      //Submit button
+      submitButton.addEventListener("click", () => {
+        getDataFromLocalStorage();
+        if (validClasses.length == 6 && invalidClasses.length == 0) {
+          window.open("./index.html");
+        } else {
+          alert("Error");
+        }
+      });
+      // getting Data in local storage
+      function getDataFromLocalStorage() {
+        let savedUsers = JSON.parse(localStorage.getItem("userRecordes"));
+        console.log(passwordInput.value);
+        savedUsers.forEach((user) => {
+          if (
+            passwordInput.value === user.password &&
+            emailInput.value === user.Email
+          ) {
+            alert("you logged in successfully");
+            window.open("./index.html");
+          } else {
+            alert("sign up first");
+            window.open("./signup.html", "_parent");
+          }
+        });
+      }
+      // // loading handling
+      let welcome = document.querySelector(".welcome");
+      let pageContent = document.querySelector(".pageContent");
+      setTimeout(function () {
+        welcome.style.display = "none";
+        pageContent.style.display = "block";
+      }, 1000);
+    </script>
+    <!-- <script src="new.js"></script> -->
+    <script src="main.js"></script>
+  </body>
+</html>

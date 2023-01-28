@@ -1,0 +1,520 @@
+/* fonts from google  */
+@import url('https://fonts.googleapis.com/css2?family=Seymour+One&display=swap');
+
+:root{
+    --font-header: 'Seymour One', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    transition: all .5s ease-in-out;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.container {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+.none {
+    display: none !important;
+}
+a{
+    text-decoration: none;
+}
+/* the page content  */
+.pageContent {
+
+}
+/* filtretion */
+.filtration {
+
+}
+/* search brand */
+.filtrationOptions {
+margin-top: 50px ;
+margin-bottom: 50px ;
+}
+.filtrationByBrand{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+}
+.filterButtonByBrandButton {
+    border-radius: 5px;
+    padding: 25px;
+    height: 80px;
+    cursor: pointer;
+    color: #020100;
+    font-weight: bold;
+    background-color: #eee9fd;
+    font-size: 25px;
+    border: none;
+    box-shadow: inset 1px 1px 2px #d6c6c6a6;
+    transition: .3s;
+}
+.filterButtonByBrandButton:hover{
+    box-shadow: none;
+}
+/* search filter */
+
+.filterOptionHeader {
+background-color: #eee9fd;
+width: fit-content;
+padding: 10px;
+border-radius: 4px;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 22px;
+}
+.filterOptionHeader i {
+}
+.filterOptionList {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 32px;
+    margin-top: 31px;
+    background-color: #cccccc57;
+    padding: 36px;
+    border-radius: 14px;
+    box-shadow: -1px 2px 5px #ccc;
+}
+.filterOptionList button{
+    font-weight: bold;
+    width: 100%;
+    font-size: 20px;
+    border: navajowhite;
+    background:  hsl(56deg 100% 50%);
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .5s;
+}
+.filterOptionList button:hover {
+    opacity: .6;
+}
+#filterOptionListInputFrom ,
+#filterOptionListInputTo {
+border: none;
+outline: none;
+padding:8px;
+
+}
+#filterOptionListInputFrom:focus ,
+#filterOptionListInputTo:focus {
+border: none;
+outline: none;
+}
+/* products box  */
+.productsBox {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    justify-content: center;
+}
+/* the card design */
+.product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 18px;
+    background-color: rgb(255, 255, 255);
+    padding: 19px 10px;
+    box-shadow: 1px 1px 37px rgb(233 230 231);
+    overflow: hidden;
+    border-radius: 11px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+.product:hover{
+    box-shadow: inset 1px 1px 1px rgb(255, 255, 255);
+}
+.CardTitle {
+height: 25px;
+box-sizing: border-box;
+text-transform: capitalize;
+}
+.CardImage {
+height: 220px;
+}
+.CardDescription{
+    height: 40px;
+    overflow: hidden;
+    color: #373131;
+    line-height: 1.25;
+    text-align: center;
+}
+
+.cardFooter {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.CardPrice {
+    background-color: hsl(56deg 100% 50%);
+    padding: 3px 10px;
+    border-radius: 17px;
+    color: black;
+    transition:  .3s ease-in-out;
+
+}
+.CardPrice:hover,
+.Cardrating:hover {
+opacity: .8;
+cursor: pointer;
+color: rgb(172, 110, 29);
+
+}
+.CardPrice span {
+
+}
+.Cardrating {
+    background-color: hsl(56deg 100% 50%);    padding: 3px 10px;
+    border-radius: 17px;
+        transition:  .3s ease-in-out;
+}
+.Cardrating  span{
+    
+}
+
+/* --------------------> the view page <----------------------  */
+.ViewPageProduct{
+margin-top: 50px;
+margin-bottom: 50px;
+}
+.ViewPageProductContent{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+@media screen and (min-width: 1024px) {
+    .ViewPageProductContent {
+      flex-direction: row;
+    }
+  }
+
+/* the left side */
+.ViewPageProductDetails{
+    flex: 1;
+    box-shadow: inset -1px 0px 20px 6px #cccccc6e;
+    padding: 30px;
+    line-height: 2.5;
+    text-align: center;
+    border: 30px solid #cccccc2b;
+    color: #787e81;}
+.ViewPageProductHeader{
+    font-family: var(--font-header);
+text-align: center;
+font-size: 33px;
+margin-bottom: 20px;
+letter-spacing: 2px;
+color: #009688;
+}
+
+.ViewPageProductDescription{
+font-family: var(--font-header);
+font-size: 20px;
+color: rgb(44 76 73);
+}
+.ViewPageProductBrand{
+
+}
+.ViewPageProductPriceBeforeDiscount{
+
+}
+
+.ViewPageProductDiscount{
+
+}
+.ViewPageProductPrice{
+
+}
+.ViewPageProductPriceSave{
+
+}
+
+/* the  cart */
+.cart {
+display: flex;
+justify-content: space-between;
+}
+#amount {
+flex: .5;
+padding: 5px;
+color: #009688;
+border: 1px solid rgb(227, 224, 224);
+}
+
+.addToCartButton,
+.deleteFromCart{
+flex: 1.5;
+padding: 5px;
+color: black;
+background-color: rgb(222, 230, 11);
+border: none;
+cursor: pointer;
+border-radius: 5px 3px 2px;
+border-radius: 32px 0 32px;
+}
+.continueShopping {
+    width: 80%;
+    padding: 5px;
+color: black;
+background-color: rgb(48, 11, 230);
+border: none;
+cursor: pointer;
+border-radius: 5px 3px 2px;
+border-radius: 32px 0 32px;
+}
+.continueShopping a {
+    text-decoration: none;
+    color: white;
+}
+/*  the right side  */
+.viewPageImages{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    box-shadow: inset -1px 0px 20px 6px #cccccc6e;
+    padding: 30px;
+    line-height: 2;
+    text-align: center;
+    border: 30px solid #cccccc2b;
+}
+.viewPageImages img {
+    border-radius: 7px;
+}
+.clickedImage{
+flex: 1.5;
+}
+.clickedImage img {
+
+}
+.allImagesIncolum {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: .5;
+    cursor: pointer;
+  }
+/* empty cart */
+.emptyCart{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    gap: 45px;
+
+}
+.emptyCart a {
+    background: blue;
+    padding: 7px 43px;
+    color: white;
+    border-radius: 11px;
+    transition: .3s;
+}
+.emptyCart a:hover{
+    background-color: #ccc;
+    color: blue;
+}
+/* loader */
+
+.loading {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: visible;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  /* Transparent Overlay */
+  .loading:before {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+  }
+  
+  /* :not(:required) hides these rules from IE9 and below */
+  .loading:not(:required) {
+    /* hide "loading..." text */
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+  }
+  
+  .loading:not(:required):after {
+    content: '';
+    display: block;
+    font-size: 10px;
+    width: 1em;
+    height: 1em;
+    margin-top: -0.5em;
+    -webkit-animation: spinner 1500ms infinite linear;
+    -moz-animation: spinner 1500ms infinite linear;
+    -ms-animation: spinner 1500ms infinite linear;
+    -o-animation: spinner 1500ms infinite linear;
+    animation: spinner 1500ms infinite linear;
+    border-radius: 0.5em;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+    box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  }
+  
+  /* Animation */
+  .loading {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: visible;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  /* Transparent Overlay */
+  .loading:before {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+  }
+  /* from code Ben */
+  /* :not(:required) hides these rules from IE9 and below */
+  .loading {
+    /* hide "loading..." text */
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+  }
+  
+  .loading:not(:required):after {
+    content: '';
+    display: block;
+    font-size: 10px;
+    width: 1em;
+    height: 1em;
+    margin-top: -0.5em;
+    -webkit-animation: spinner 1500ms infinite linear;
+    -moz-animation: spinner 1500ms infinite linear;
+    -ms-animation: spinner 1500ms infinite linear;
+    -o-animation: spinner 1500ms infinite linear;
+    animation: spinner 1500ms infinite linear;
+    border-radius: 0.5em;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+    box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  }
+  
+  /* Animation */
+  
+  @-webkit-keyframes spinner {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @-moz-keyframes spinner {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @-o-keyframes spinner {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes spinner {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  .welcome h2 {
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translatex(-50%);
+    color: #3f51b5;
+    font-size: 2.5rem;
+  }
